@@ -1,0 +1,16 @@
+1️⃣ Stop and remove all running containers
+docker-compose down
+
+2️⃣ Remove all containers (optional if you want full cleanup)
+docker rm -f $(docker ps -aq)
+
+3️⃣ Remove all images (optional if you want full rebuild)
+docker rmi -f $(docker images -aq)
+
+4️⃣ Remove all volumes (important to reset DB)
+docker volume rm $(docker volume ls -q)
+
+
+5️⃣ Build and run fresh
+docker-compose build
+docker-compose up
