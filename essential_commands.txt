@@ -14,3 +14,27 @@ docker volume rm $(docker volume ls -q)
 5️⃣ Build and run fresh
 docker-compose build
 docker-compose up
+
+
+
+
+✅ All containers (django, nginx, postgres)
+✅ Networks created by compose
+✅ Volumes (Postgres DB data)
+✅ Images built by this compose file
+sudo docker-compose down --volumes --rmi all --remove-orphans
+
+
+✅ Remove any leftover containers
+sudo docker rm -f $(sudo docker ps -aq)
+
+✅ Remove dangling volumes
+sudo docker volume prune -f
+
+✅ Build and run fresh
+sudo docker-compose build
+sudo docker-compose up
+
+
+
+rm -rf docker-test-work

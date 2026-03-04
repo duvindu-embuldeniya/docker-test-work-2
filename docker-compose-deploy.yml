@@ -1,0 +1,49 @@
+services:
+  app:
+    build: .
+    image: myapp:django
+    container_name: django_container
+    ports:
+      - 8000:8000
+    restart: always
+    command: >
+      sh -c "sleep 10 &&
+             python manage.py makemigrations &&
+             python manage.py migrate &&
+             gunicorn simply.wsgi:application --bind 0.0.0.0:8000 --timeout 5 --threads 10"
+    environment:
+      - DB_HOST=db
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_PORT=5432
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14-alpine
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER=${DB_USER}
+      POSTGRES_PASSWORD=${DB_PASS}
+      POSTGRES_DB=${DB_NAME}
+    volumes:
+      - dev-db-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+
+  nginx:
+    build: ./nginx
+    image: mynginx:latest
+    container_name: nginx_container
+    ports:
+      - 80:80
+    restart: always
+    depends_on:
+      - app
+    command: >
+      sh -c "sleep 15 && nginx -g 'daemon off;'"
+
+volumes:
+  dev-db-data:
