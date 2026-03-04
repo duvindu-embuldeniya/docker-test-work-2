@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure--@u)%e+8o@tfhle%^np*ydyh&-1ybd3gpsl=ko)nu07w=v6n*&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['duvindu.org', 'www.duvindu.org', '*', '35.200.169.162']
+ALLOWED_HOSTS = ['duvindu.org', 'www.duvindu.org', '*']
 
 CSRF_TRUSTED_ORIGINS = ['https://www.duvindu.org', 'https://duvindu.org']
 
