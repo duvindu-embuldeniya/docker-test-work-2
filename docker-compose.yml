@@ -7,8 +7,8 @@ services:
       - 8000:8000
     command: >
       sh -c "sleep 10 &&
-             python manage.py makemigrations &&
-             python manage.py migrate &&
+             python manage.py makemigrations --noinput &&
+             python manage.py migrate --noinput &&
              gunicorn simply.wsgi:application --bind 0.0.0.0:8000 --timeout 5 --threads 10"
     environment:
       - DB_HOST=db
