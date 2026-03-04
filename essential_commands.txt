@@ -38,3 +38,5 @@ sudo docker-compose up
 
 
 rm -rf docker-test-work
+
+docker-compose -f docker-compose-deploy.yml up -d
