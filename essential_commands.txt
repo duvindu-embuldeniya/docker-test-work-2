@@ -37,5 +37,5 @@ sudo docker-compose up
 
 
 
-rm -rf docker-test-work
+
 

@@ -12,9 +12,9 @@ services:
              gunicorn simply.wsgi:application --bind 0.0.0.0:8000 --timeout 5 --threads 10"
     environment:
       - DB_HOST=db
-      - DB_NAME=changeme
-      - DB_USER=changeme
-      - DB_PASS=changeme
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
       - DB_PORT=5432
     depends_on:
       - db
@@ -23,9 +23,9 @@ services:
     image: postgres:14-alpine
     container_name: postgres_container
     environment:
-      POSTGRES_USER: chnageme
-      POSTGRES_PASSWORD: changeme
-      POSTGRES_DB: changeme
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
     volumes:
       - dev-db-data:/var/lib/postgresql/data
     ports:
